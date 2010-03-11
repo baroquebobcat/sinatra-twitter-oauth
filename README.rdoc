@@ -1,7 +1,32 @@
 = sinatra-twitter-oauth
 
-Description goes here.
+A simple sinatra extension for using twitter oauth for login
 
+
+== Examples
+=== classic style
+  require 'sinatra'
+  require 'sinatra-twitter-oauth'
+  
+  set :twitter_oauth_config,  :key => 'foo-key',
+                              :secret   => 'foo-secret',
+                              :callback => 'example.com/foo/auth'
+  get '/' do
+    login_required
+  end
+=== using Sinatra::Base
+
+  require 'sinatra'
+  require 'sinatra-twitter-oauth'
+  class FooApp < Sinatra::Base
+    register Sinatra::TwitterOAuth
+    set :twitter_oauth_config,  :key => 'foo-key',
+                                :secret   => 'foo-secret',
+                                :callback => 'example.com/foo/auth'
+    get '/' do
+      login_required
+    end
+  end
 == Note on Patches/Pull Requests
  
 * Fork the project.
