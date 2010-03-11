@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "sinatra-twitter-oauth"
     gem.summary = %Q{A Sinatra Extension that simplifies using twitter for login and authentication.}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{A Sinatra Extension that simplifies using twitter for login and authentication.}
     gem.email = "ndh@baroquebobcat.com"
     gem.homepage = "http://github.com/baroquebobcat/sinatra-twitter-oauth"
     gem.authors = ["Nick Howard"]
