@@ -24,14 +24,14 @@ module Sinatra
       :login_template => {:text=>'<a href="/connect">Login using Twitter</a>'}
     }
   
-    def self.registered app
+    def self.registered app  # :nodoc:
     
       app.helpers Helpers
       app.enable :sessions
       app.set :twitter_oauth_config, DEFAULT_CONFIG
         
       app.get '/login' do
-        redirect '/' if @user
+        redirect '/' if user
         
         login_template = options.twitter_oauth_config[:login_template]
         

@@ -26,11 +26,12 @@ Gem::Specification.new do |s|
      "lib/sinatra-twitter-oauth.rb",
      "lib/sinatra-twitter-oauth/helpers.rb",
      "lib/sinatra-twitter-oauth/twitter_oauth_ext.rb",
+     "sinatra-twitter-oauth.gemspec",
      "spec/sinatra-twitter-oauth_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/baroquebobcat/sinatra-twitter-oauth}
-  s.rdoc_options = ["--charset=UTF-8"]
+  s.rdoc_options = ["--charset=UTF-8", "--main", "README.rdoc"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{A Sinatra Extension that simplifies using twitter for login and authentication.}

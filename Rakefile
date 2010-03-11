@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/baroquebobcat/sinatra-twitter-oauth"
     gem.authors = ["Nick Howard"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.rdoc_options << "--main" << "README.rdoc"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

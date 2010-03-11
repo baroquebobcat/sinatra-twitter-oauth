@@ -13,6 +13,7 @@ A simple sinatra extension for using twitter oauth for login
                               :callback => 'example.com/foo/auth'
   get '/' do
     login_required
+    "hello #{user}"
   end
 === using Sinatra::Base
 
@@ -25,6 +26,7 @@ A simple sinatra extension for using twitter oauth for login
                                 :callback => 'example.com/foo/auth'
     get '/' do
       login_required
+      "hello #{user}"
     end
   end
 == Note on Patches/Pull Requests
