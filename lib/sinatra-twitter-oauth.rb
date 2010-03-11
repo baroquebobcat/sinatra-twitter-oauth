@@ -33,15 +33,15 @@ module Sinatra
       app.get '/login' do
         redirect '/' if @user
         
-        login_config = options.twitter_oauth_config[:login_template]
+        login_template = options.twitter_oauth_config[:login_template]
         
-        engine = login_config.keys.first
+        engine = login_template.keys.first
         
         case engine
         when :text
-          login_config[:text]
+          login_template[:text]
         else
-          render engine, login_config[engine]
+          render engine, login_template[engine]
         end
       end
       
