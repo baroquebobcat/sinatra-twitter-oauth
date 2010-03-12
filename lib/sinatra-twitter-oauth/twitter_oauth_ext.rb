@@ -12,6 +12,14 @@ module TwitterOAuth
       self.info = info
     end
     
+    #updates the user's status
+    # msg -- message to update to
+    # opts additional options eg lat,long
+    
+    def update_status msg, opts={}
+      client.update msg, opts
+    end
+    
     def lists
       client.get_lists(screen_name)['lists'].map {|list| List.new client, list}
     end
