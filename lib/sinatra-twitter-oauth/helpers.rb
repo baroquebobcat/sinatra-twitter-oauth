@@ -2,7 +2,13 @@ module Sinatra::TwitterOAuth
   #Helpers exposed by the extension.
   #
   module Helpers
-    
+
+    # relative url based option
+    def login_url_for(url)
+      prefix = options.twitter_oauth_config[:prefix] || ""
+      "#{prefix}#{url}"
+    end
+   
     # The current logged in user
     def user
       @user
@@ -16,10 +22,9 @@ module Sinatra::TwitterOAuth
       
       @rate_limit_status = @client.rate_limit_status
       
-      redirect '/login' unless user
+      redirect login_url_for '/login' unless user
     end
-    
-    
+
     def setup_client # :nodoc:
       @client ||= ::TwitterOAuth::Client.new(
         :consumer_secret => options.twitter_oauth_config[:secret],

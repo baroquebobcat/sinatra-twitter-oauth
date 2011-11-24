@@ -51,7 +51,7 @@ module Sinatra
 
       app.get '/auth' do
         if authenticate!
-          redirect '/'
+          redirect login_url_for '/'
         else
           status 403
           'Not Authenticated'
@@ -60,7 +60,7 @@ module Sinatra
       
       app.get '/logout' do
         clear_oauth_session
-        redirect '/login'
+        redirect login_url_for '/login'
       end
     end
     
