@@ -9,11 +9,12 @@ require 'sinatra-twitter-oauth/helpers'
 # using twitter oauth for login
 #
 #twitter_oauth_config
-#options
+#settings
 # key -- oauth consumer key
 # secret -- oauth consumer secret
 # callback -- oauth callback url. Must be absolute. e.g. http://example.com/auth
 # login_template -- a single entry hash with the engine as the key e.g. :login_template => {:haml => :login}
+# prefix -- add prefix to redirect url path
 module Sinatra
   module TwitterOAuth
   
@@ -31,9 +32,9 @@ module Sinatra
       app.set :twitter_oauth_config, DEFAULT_CONFIG
         
       app.get '/login' do
-        redirect '/' if user
+        redirect login_url_for '/' if user
         
-        login_template = options.twitter_oauth_config[:login_template]
+        login_template = settings.twitter_oauth_config[:login_template]
         
         engine = login_template.keys.first
         

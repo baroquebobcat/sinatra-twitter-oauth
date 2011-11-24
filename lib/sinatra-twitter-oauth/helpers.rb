@@ -5,7 +5,7 @@ module Sinatra::TwitterOAuth
 
     # relative url based option
     def login_url_for(url)
-      prefix = options.twitter_oauth_config[:prefix] || ""
+      prefix = settings.twitter_oauth_config[:prefix] || ""
       "#{prefix}#{url}"
     end
    
@@ -27,8 +27,8 @@ module Sinatra::TwitterOAuth
 
     def setup_client # :nodoc:
       @client ||= ::TwitterOAuth::Client.new(
-        :consumer_secret => options.twitter_oauth_config[:secret],
-        :consumer_key => options.twitter_oauth_config[:key],
+        :consumer_secret => settings.twitter_oauth_config[:secret],
+        :consumer_key => settings.twitter_oauth_config[:key],
         :token  => session[:access_token],
         :secret => session[:secret_token]
       )
@@ -38,7 +38,7 @@ module Sinatra::TwitterOAuth
       setup_client
       
       begin
-        @client.authentication_request_token(:oauth_callback=>options.twitter_oauth_config[:callback])
+        @client.authentication_request_token(:oauth_callback=>settings.twitter_oauth_config[:callback])
       rescue StandardError => e
         halt 500,'check your key & secret'
       end
