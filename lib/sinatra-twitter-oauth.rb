@@ -22,13 +22,14 @@ module Sinatra
       :key      => 'changeme',
       :secret   => 'changeme',
       :callback => 'changeme',
-      :login_template => {:text=>'<a href="/connect">Login using Twitter</a>'}
+      :login_template => {:text=>'<a href="/connect">Login using Twitter</a>'},
+      :prefix => ""
     }
   
     def self.registered app  # :nodoc:
     
       app.helpers Helpers
-      app.enable :sessions
+      app.use Rack::Session::Pool
       app.set :twitter_oauth_config, DEFAULT_CONFIG
         
       app.get '/login' do

@@ -17,7 +17,7 @@ module Sinatra::TwitterOAuth
     # Redirects to login unless there is an authenticated user
     def login_required
       setup_client
-      
+
       @user = ::TwitterOAuth::User.new(@client, session[:user]) if session[:user]
       
       @rate_limit_status = @client.rate_limit_status
@@ -61,10 +61,9 @@ module Sinatra::TwitterOAuth
     # gets the request token and redirects to twitter's OAuth endpoint
     def redirect_to_twitter_auth_url
       request_token = get_request_token
-    
       session[:request_token] = request_token.token
       session[:request_token_secret]= request_token.secret
-    
+
       redirect request_token.authorize_url.gsub('authorize','authenticate')
     end
     
