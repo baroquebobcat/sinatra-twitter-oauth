@@ -36,7 +36,7 @@ describe Sinatra::TwitterOAuth do
     it 'redirects to /login when unauthenticated' do
       get '/'
       last_response.should be_redirect
-      last_response.location.should == '/login'
+      last_response.location.should =~ /\/login$/
     end
     
     it 'lets you through if you are authed' do
@@ -85,7 +85,7 @@ describe Sinatra::TwitterOAuth do
         @client.stub!(:authorized?).and_return true
         @client.stub!(:info).and_return(mock(:user))
         get '/auth'
-        last_response.location.should == '/'
+        last_response.location.should =~ /\/$/
       end
     end
   end
@@ -93,7 +93,7 @@ describe Sinatra::TwitterOAuth do
   describe "GET /logout" do
     it "redirects to /login" do
       get '/logout',{},@authed_session
-      last_response.location.should == '/login'
+      last_response.location.should =~ /\/login$/
     end
   end
 end

@@ -29,7 +29,7 @@ module Sinatra
     def self.registered app  # :nodoc:
     
       app.helpers Helpers
-      app.use Rack::Session::Pool
+      app.use Rack::Session::Pool, :key => 'rack.session'
       app.set :twitter_oauth_config, DEFAULT_CONFIG
         
       app.get '/login' do
