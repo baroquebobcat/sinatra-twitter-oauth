@@ -17,7 +17,8 @@ module Sinatra::TwitterOAuth
     # Redirects to login unless there is an authenticated user
     def login_required
       setup_client
-      session_h = session.to_hash
+      session_h = Hash[session.to_hash.map{|key,value| [key.to_sym, value]}]
+
       @user = ::TwitterOAuth::User.new(@client, session_h[:user]) if session_h[:user]
       
       @rate_limit_status = @client.rate_limit_status
